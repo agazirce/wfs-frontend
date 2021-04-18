@@ -1,0 +1,32 @@
+import {Component} from '@angular/core';
+import {CharacterService} from '../character.service';
+import {ActivatedRoute, Router} from '@angular/router';
+
+@Component({
+  selector: 'app-character-admin',
+  templateUrl: './character-admin.component.html',
+  styleUrls: ['./character-admin.component.scss'],
+  providers: [
+    CharacterService
+  ]
+})
+
+export class CharacterAdminComponent {
+
+  constructor(
+    private service: CharacterService,
+    private router: Router
+  ) { }
+
+  datasource = this.service.getAllItems();
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'birthYear', 'update', 'remove'];
+
+  remove(id: number): void {
+    if (id){
+      this.service.removeItem(id).subscribe();
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/characters/admin']);
+      });
+    }
+  }
+}

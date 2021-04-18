@@ -1,0 +1,37 @@
+<mat-sidenav-container>
+  <mat-sidenav #sidenav>
+    <mat-nav-list>
+      <a *ngFor="let item of menuItems" mat-list-item
+         [routerLink]="item.link" (click)="sidenav.close()">
+        {{ item.label }}
+      </a>
+      <mat-list-item (click)="logout()">
+        Déconnexion
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button mat-icon-button (click)="sidenav.open()">
+        <mat-icon>
+          menu
+        </mat-icon>
+      </button>
+
+      <h1>
+        {{ title }}
+      </h1>
+
+      <ng-container *ngIf="{me: me$ | async} as profilData">
+        <mat-icon *ngIf="profilData.me"
+                  [matTooltip]="profilData.me.email">
+          face
+        </mat-icon>
+      </ng-container>
+
+    </mat-toolbar>
+    <router-outlet>
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,41 @@
+<form [formGroup]="formGroup" (ngSubmit)="save()">
+  <mat-form-field>
+    <mat-label>Titre</mat-label>
+    <input matInput
+           formControlName="title" name="title" />
+    <mat-error *ngIf="formGroup.controls.title.errors?.required">
+      Ce champ est requis.
+    </mat-error>
+    <mat-error *ngIf="formGroup.controls.title.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.title.errors?.minlength.requiredLength}} caractères.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Url de l'image</mat-label>
+    <input matInput
+           formControlName="imageUrl" name="imageUrl" />
+    <mat-error *ngIf="formGroup.controls.imageUrl.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.imageUrl.errors?.minlength.requiredLength}} caractères.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Année de sortie</mat-label>
+    <input matInput placeholder="1950"
+           type="number" formControlName="year" name="year" />
+    <mat-hint>Format : YYYY</mat-hint>
+    <mat-error *ngIf="formGroup.controls.year.errors?.required">
+      Ce champ est requis.
+    </mat-error>
+    <mat-error *ngIf="formGroup.controls.year.errors?.max">
+      Ce champ doit être inférieur à {{formGroup.controls.year.errors?.max.max}}.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary">
+    Save
+  </button>
+  <button type="button" mat-flat-button color="accent" (click)="reset()">
+    Reset
+  </button>
+</form>
+<a mat-button routerLink="/movies">Retour à la liste</a>

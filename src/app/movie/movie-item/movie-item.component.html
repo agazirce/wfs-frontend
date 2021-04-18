@@ -1,0 +1,14 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      {{ item?.title }}
+    </mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="item?.imageUrl" />
+  <mat-card-content>
+    {{ item?.year }}
+  </mat-card-content>
+  <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id?.toString()">Détail</a>
+  <a mat-button (click)="remove()">Supprimer</a>
+  <a mat-button *ngIf="isDetail" routerLink="/movies">Retour à la liste</a>
+</mat-card>

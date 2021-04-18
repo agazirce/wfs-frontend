@@ -1,0 +1,46 @@
+<ng-container *ngIf="character$ | async"></ng-container>
+<form [formGroup]="formGroup" (ngSubmit)="save()">
+  <mat-form-field>
+    <mat-label>Prénom</mat-label>
+    <input matInput
+           formControlName="firstName" name="firstName" />
+    <mat-error *ngIf="formGroup.controls.firstName.errors?.required">
+      Ce champ est requis.
+    </mat-error>
+    <mat-error *ngIf="formGroup.controls.firstName.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.firstName.errors?.minlength.requiredLength}} caractères.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nom</mat-label>
+    <input matInput
+           formControlName="lastName" name="lastName" />
+    <mat-error *ngIf="formGroup.controls.lastName.errors?.required">
+      Ce champ est requis.
+    </mat-error>
+    <mat-error *ngIf="formGroup.controls.lastName.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.lastName.errors?.minlength.requiredLength}} caractères.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Age</mat-label>
+    <input matInput
+           type="number" formControlName="age" name="age" />
+    <mat-error *ngIf="formGroup.controls.age.errors?.required">
+      Ce champ est requis.
+    </mat-error>
+    <mat-error *ngIf="formGroup.controls.age.errors?.min">
+      Ce champ doit être supérieur ou égal à {{formGroup.controls.age.errors?.min.min}}.
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="primary">
+    Save
+  </button>
+  <button type="button" mat-flat-button color="accent" (click)="reset()">
+    Reset
+  </button>
+</form>
+<a mat-button routerLink="/characters">Retour à la liste</a>

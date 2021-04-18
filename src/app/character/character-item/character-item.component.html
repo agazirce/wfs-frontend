@@ -1,0 +1,20 @@
+<mat-chip-list>
+  <mat-chip selected color="primary"
+            (click)="onAttributeClick(CharacterItemAttribute.firstName)">
+    {{ item?.firstName || 'John' }}
+  </mat-chip>
+  <mat-chip selected color="accent"
+            (click)="onAttributeClick(CharacterItemAttribute.lastName)">
+    {{ item?.lastName || 'Doe' }}
+  </mat-chip>
+  <mat-chip selected color="warn"
+            (click)="onAttributeClick(CharacterItemAttribute.birthYear)">
+    {{ item?.birthYear || 1970 }}
+  </mat-chip>
+  <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id?.toString()">Détail</a>
+  <a mat-button [routerLink]="'/characters/edit/' + item?.id?.toString()">Modifier</a>
+  <mat-chip (click)="remove()">
+    Supprimer
+  </mat-chip>
+</mat-chip-list>
+<a mat-button *ngIf="isDetail" routerLink="/characters">Retour à la liste</a>
