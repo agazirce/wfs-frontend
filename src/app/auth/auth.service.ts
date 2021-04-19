@@ -27,8 +27,8 @@ export class AuthService {
 
   private modelToDto(model: IAuthLoginCredentials): IAuthCredentialsDto {
     return {
-      login: model.email,
-      pwd: model.password
+      email: model.email,
+      password: model.password
     };
   }
 }

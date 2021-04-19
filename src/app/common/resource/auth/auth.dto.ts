@@ -1,6 +1,6 @@
 export interface IAuthCredentialsDto {
-  login: string;
-  pwd: string;
+  email: string;
+  password: string;
 }
 
 export interface IAuthTokenDto {
