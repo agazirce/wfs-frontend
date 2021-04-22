@@ -19,7 +19,7 @@ export class MovieEditComponent {
     private formBuilder: FormBuilder
   ) {
     this.formGroup = this.formBuilder.group({
-      id: [undefined],
+      _id: [undefined],
       title: [undefined, [Validators.required, Validators.minLength(2)]],
       imageUrl: [undefined, [Validators.minLength(2)]],
       year: [undefined, [Validators.required, Validators.max(9999)]]
@@ -30,7 +30,7 @@ export class MovieEditComponent {
   save(): void {
     if (this.formGroup.valid) {
       const movie: IMovie = {
-        id: null,
+        _id: null,
         title: this.formGroup.value.title,
         imageUrl: this.formGroup.value.imageUrl,
         year: this.formGroup.value.year

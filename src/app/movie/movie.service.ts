@@ -14,7 +14,7 @@ export class MovieService {
     return this.movieResource.findAll();
   }
 
-  getItem(id: number): Observable<IMovie> {
+  getItem(id: string): Observable<IMovie> {
     return this.movieResource.findOne(id);
   }
 
@@ -22,7 +22,7 @@ export class MovieService {
     return this.movieResource.create(movie);
   }
 
-  removeItem(id: number): Observable<any> {
+  removeItem(id: string): Observable<any> {
     return this.movieResource.remove(id);
   }
 }

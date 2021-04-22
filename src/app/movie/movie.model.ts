@@ -1,5 +1,5 @@
 export interface IMovie {
-  id: number | null;
+  _id: string | null;
   title: string;
   imageUrl: string;
   year: number;
