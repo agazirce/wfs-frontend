@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CharacterService} from '../character.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-character-admin',
@@ -21,7 +21,7 @@ export class CharacterAdminComponent {
   datasource = this.service.getAllItems();
   displayedColumns: string[] = ['id', 'firstName', 'lastName', 'birthYear', 'update', 'remove'];
 
-  remove(id: number): void {
+  remove(id: string): void {
     if (id){
       this.service.removeItem(id).subscribe();
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {

@@ -1,12 +1,10 @@
 import { Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CharacterService} from '../character.service';
-import {ICharacterDto} from '../../common/resource/character/character.dto';
-import {ActivatedRoute, Params} from '@angular/router';
-import {filter, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {ActivatedRoute} from '@angular/router';
+import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {ICharacter} from '../character.model';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-character-edit',
@@ -30,12 +28,12 @@ export class CharacterEditComponent {
       id: [],
       firstName: [undefined, [Validators.required, Validators.minLength(2)]],
       lastName: [undefined, [Validators.required, Validators.minLength(2)]],
-      age: [undefined, [Validators.required, Validators.min(0)]]
+      birthYear: [undefined, [Validators.min(0)]]
     });
     this.reset();
     this.character$ = this.route.params
       .pipe(
-        map(params => parseInt(params.id, 10)),
+        map(params => params.id),
         filter(id => !!id),
         switchMap(id => this.characterService.getItem(id)),
         tap(character => {
@@ -43,7 +41,7 @@ export class CharacterEditComponent {
             id: character.id,
             firstName: character.firstName,
             lastName: character.lastName,
-            age: moment().year() - character.birthYear
+            birthYear: character.birthYear
           });
         })
       );
@@ -51,11 +49,11 @@ export class CharacterEditComponent {
 
   save(): void {
     if (this.formGroup.valid) {
-      const character: ICharacterDto = {
+      const character: ICharacter = {
         id: this.formGroup.value.id,
         firstName: this.formGroup.value.firstName,
         lastName: this.formGroup.value.lastName,
-        age: this.formGroup.value.age
+        birthYear: this.formGroup.value.birthYear
       };
       this.characterService.saveItem(character)
         .subscribe(createdCharacter => console.log(createdCharacter));

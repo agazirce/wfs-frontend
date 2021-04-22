@@ -25,14 +25,11 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Age</mat-label>
+    <mat-label>Année de naissance</mat-label>
     <input matInput
-           type="number" formControlName="age" name="age" />
-    <mat-error *ngIf="formGroup.controls.age.errors?.required">
-      Ce champ est requis.
-    </mat-error>
-    <mat-error *ngIf="formGroup.controls.age.errors?.min">
-      Ce champ doit être supérieur ou égal à {{formGroup.controls.age.errors?.min.min}}.
+           type="number" formControlName="birthYear" name="birthYear" />
+    <mat-error *ngIf="formGroup.controls.birthYear.errors?.min">
+      Ce champ doit être supérieur ou égal à {{formGroup.controls.birthYear.errors?.min.min}}.
     </mat-error>
   </mat-form-field>
 

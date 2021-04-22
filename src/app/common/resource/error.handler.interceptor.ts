@@ -5,8 +5,6 @@ import {catchError} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 enum ErrorType {
-  resourceIdFormat = 'RESOURCE_ID_FORMAT',
-  resourceIdNotFound = 'RESOURCE_ID_NOT_FOUND',
   resourceTypeNotFound = 'RESOURCE_TYPE_NOT_FOUND',
   unhandledError = 'UNHANDLED_ERROR',
   invalidCredentials = 'INVALID_CREDENTIALS',
@@ -42,9 +40,7 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       case ErrorType.invalidCredentials:
       case ErrorType.missingToken:
         return 'Vous devez vous authentifier pour accéder à cette donnée.';
-      case ErrorType.resourceIdNotFound:
       case ErrorType.resourceTypeNotFound:
-      case ErrorType.resourceIdFormat:
       case ErrorType.unhandledError:
         return 'Cette requête a généré une erreur.';
     }

@@ -8,8 +8,8 @@
   <mat-chip selected color="warn">
     {{ item?.birthYear || 1970 }}
   </mat-chip>
-  <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id?.toString()">Détail</a>
-  <a mat-button [routerLink]="'/characters/edit/' + item?.id?.toString()">Modifier</a>
+  <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id">Détail</a>
+  <a mat-button [routerLink]="'/characters/edit/' + item?.id">Modifier</a>
   <mat-chip (click)="remove()">
     Supprimer
   </mat-chip>
