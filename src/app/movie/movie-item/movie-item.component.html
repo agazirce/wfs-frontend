@@ -8,7 +8,7 @@
   <mat-card-content>
     {{ item?.year }}
   </mat-card-content>
-  <a mat-button *ngIf="isDetail == false" [routerLink]="item?._id?.toString()">Détail</a>
+  <a mat-button *ngIf="isDetail == false" [routerLink]="item?._id">Détail</a>
   <a mat-button (click)="remove()">Supprimer</a>
   <a mat-button *ngIf="isDetail" routerLink="/movies">Retour à la liste</a>
 </mat-card>

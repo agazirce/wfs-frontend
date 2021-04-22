@@ -1,15 +1,27 @@
 <mat-chip-list>
   <mat-chip selected color="primary">
-    {{ item?.firstName || 'John' }}
+    {{ item?.firstName }}
   </mat-chip>
   <mat-chip selected color="accent">
-    {{ item?.lastName || 'Doe' }}
+    {{ item?.lastName }}
+  </mat-chip>
+  <mat-chip selected color="accent">
+    {{ item?.nickname }}
   </mat-chip>
   <mat-chip selected color="warn">
     {{ item?.birthYear || 1970 }}
   </mat-chip>
-  <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id?.toString()">Détail</a>
-  <a mat-button [routerLink]="'/characters/edit/' + item?.id?.toString()">Modifier</a>
+  <mat-chip selected color="warn">
+    {{ item?.gender }}
+  </mat-chip>
+  <mat-chip selected color="warn">
+    {{ item?.species }}
+  </mat-chip>
+  <mat-chip selected color="warn">
+    {{ item?.actor }}
+  </mat-chip>
+  <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id">Détail</a>
+  <a mat-button [routerLink]="'/characters/edit/' + item?.id">Modifier</a>
   <mat-chip (click)="remove()">
     Supprimer
   </mat-chip>

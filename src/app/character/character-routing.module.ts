@@ -22,13 +22,13 @@ const routes: Routes = [
     component: CharacterEditComponent
   },
   {
+    path: ':id',
+    component: CharacterItemComponent
+  },
+  {
     canActivate: [MeGuard],
     path: 'edit/:id',
     component: CharacterEditComponent
-  },
-  {
-    path: ':id',
-    component: CharacterItemComponent
   }
 ];
 

@@ -1,8 +1,19 @@
 export interface ICharacter {
-  id: number | null;
-  firstName: string;
-  lastName: string;
-  birthYear: number;
+  id: string | null;
+  firstName: string | null;
+  lastName: string | null;
+  nickname: string | null;
+  birthYear: number | null;
+  gender: Gender | null;
+  species: string | null;
+  actor: string | null;
+}
+
+export enum Gender {
+  Male = 'Male',
+  Female = 'Female',
+  Other = 'Other',
+  HelicoptereDeCombat = 'Helicoptere de combat'
 }
 
 export enum CharacterItemAttribute {
