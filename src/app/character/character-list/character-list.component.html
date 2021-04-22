@@ -1,19 +1,4 @@
 <mat-list>
-  <mat-list-item *ngFor="let item of items">
-    <app-character-item [item]="item"
-                        (attributeClick)="itemAttributeClick($event)">
-    </app-character-item>
-  </mat-list-item>
+  <mat-list-item *ngFor="let item of items"></mat-list-item>
 </mat-list>
-<mat-chip-list>
-  <mat-chip selected color="primary">
-    {{ count[CharacterItemAttribute.firstName] }}
-  </mat-chip>
-  <mat-chip selected color="accent">
-    {{ count[CharacterItemAttribute.lastName] }}
-  </mat-chip>
-  <mat-chip selected color="warn">
-    {{ count[CharacterItemAttribute.birthYear] }}
-  </mat-chip>
-</mat-chip-list>
 <a mat-button [routerLink]="'edit'">Ajouter un personnage</a>

@@ -1,14 +1,11 @@
 <mat-chip-list>
-  <mat-chip selected color="primary"
-            (click)="onAttributeClick(CharacterItemAttribute.firstName)">
+  <mat-chip selected color="primary">
     {{ item?.firstName || 'John' }}
   </mat-chip>
-  <mat-chip selected color="accent"
-            (click)="onAttributeClick(CharacterItemAttribute.lastName)">
+  <mat-chip selected color="accent">
     {{ item?.lastName || 'Doe' }}
   </mat-chip>
-  <mat-chip selected color="warn"
-            (click)="onAttributeClick(CharacterItemAttribute.birthYear)">
+  <mat-chip selected color="warn">
     {{ item?.birthYear || 1970 }}
   </mat-chip>
   <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id?.toString()">Détail</a>

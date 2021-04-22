@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter, OnChanges, OnInit, OnDestroy, SimpleChanges} from '@angular/core';
-import { CharacterItemAttribute, ICharacter } from '../character.model';
+import {Component, Input} from '@angular/core';
+import { ICharacter } from '../character.model';
 import {CharacterService} from '../character.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
@@ -11,12 +11,9 @@ import {ActivatedRoute, Router} from '@angular/router';
     CharacterService
   ]
 })
-export class CharacterItemComponent implements OnInit, OnChanges, OnDestroy {
+export class CharacterItemComponent {
   @Input() item: ICharacter | undefined;
-  @Output() attributeClick = new EventEmitter<CharacterItemAttribute>();
   isDetail = false;
-
-  CharacterItemAttribute = CharacterItemAttribute;
 
   constructor(
     private service: CharacterService,
@@ -36,10 +33,6 @@ export class CharacterItemComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  onAttributeClick(attribute: CharacterItemAttribute): void {
-    this.attributeClick.emit(attribute);
-  }
-
   remove(): void {
     if (this.item?.id){
       this.service.removeItem(this.item.id).subscribe();
@@ -47,17 +40,5 @@ export class CharacterItemComponent implements OnInit, OnChanges, OnDestroy {
         this.router.navigate(['/characters']);
       });
     }
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('Changes', changes);
-  }
-
-  ngOnDestroy(): void {
-    console.log('Destroy');
-  }
-
-  ngOnInit(): void {
-    console.log('Init');
   }
 }
