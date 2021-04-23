@@ -13,9 +13,9 @@
   <mat-form-field>
     <mat-label>Url de l'image</mat-label>
     <input matInput
-           formControlName="imageUrl" name="imageUrl" />
-    <mat-error *ngIf="formGroup.controls.imageUrl.errors?.minlength">
-      Ce champ doit contenir au moins {{formGroup.controls.imageUrl.errors?.minlength.requiredLength}} caractères.
+           formControlName="affiche" name="affiche" />
+    <mat-error *ngIf="formGroup.controls.affiche.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.affiche.errors?.minlength.requiredLength}} caractères.
     </mat-error>
   </mat-form-field>
   <mat-form-field>

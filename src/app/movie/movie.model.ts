@@ -1,6 +1,6 @@
 export interface IMovie {
   _id: string | null;
   title: string;
-  imageUrl: string;
+  affiche: string;
   year: number;
 }

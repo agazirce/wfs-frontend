@@ -21,7 +21,7 @@ export class MovieEditComponent {
     this.formGroup = this.formBuilder.group({
       _id: [undefined],
       title: [undefined, [Validators.required, Validators.minLength(2)]],
-      imageUrl: [undefined, [Validators.minLength(2)]],
+      affiche: [undefined, [Validators.minLength(2)]],
       year: [undefined, [Validators.required, Validators.max(9999)]]
     });
     this.reset();
@@ -32,7 +32,7 @@ export class MovieEditComponent {
       const movie: IMovie = {
         _id: null,
         title: this.formGroup.value.title,
-        imageUrl: this.formGroup.value.imageUrl,
+        affiche: this.formGroup.value.affiche,
         year: this.formGroup.value.year
       };
       this.movieService.saveItem(movie)
