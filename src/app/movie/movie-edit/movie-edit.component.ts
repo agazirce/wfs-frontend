@@ -22,7 +22,11 @@ export class MovieEditComponent {
       _id: [undefined],
       title: [undefined, [Validators.required, Validators.minLength(2)]],
       affiche: [undefined, [Validators.minLength(2)]],
-      year: [undefined, [Validators.required, Validators.max(9999)]]
+      genre: [undefined, [Validators.minLength(2)]],
+      realisator: [undefined, [Validators.minLength(2)]],
+      year: [undefined, [Validators.required, Validators.max(9999)]],
+      duration: [undefined, [Validators.required, Validators.max(9999)]],
+      preview: [undefined, [Validators.minLength(2)]]
     });
     this.reset();
   }
@@ -32,8 +36,12 @@ export class MovieEditComponent {
       const movie: IMovie = {
         _id: null,
         title: this.formGroup.value.title,
+        genre: this.formGroup.value.genre,
         affiche: this.formGroup.value.affiche,
-        year: this.formGroup.value.year
+        year: this.formGroup.value.year,
+        realisator: this.formGroup.value.realisator,
+        duration: this.formGroup.value.duration,
+        preview: this.formGroup.value.preview,
       };
       this.movieService.saveItem(movie)
         .subscribe(createdMovie => console.log(createdMovie));
@@ -43,7 +51,8 @@ export class MovieEditComponent {
 
   reset(): void {
     this.formGroup.reset({
-      year: 1970
+      year: 1970,
+      duration: 120
     });
   }
 

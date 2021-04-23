@@ -31,6 +31,46 @@
     </mat-error>
   </mat-form-field>
 
+  <mat-form-field>
+    <mat-label>Genre</mat-label>
+    <input matInput
+           formControlName="genre" name="genre" />
+    <mat-error *ngIf="formGroup.controls.genre.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.genre.errors?.minlength.requiredLength}} caractères.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Réalisteur</mat-label>
+    <input matInput
+           formControlName="realisator" name="realisator" />
+    <mat-error *ngIf="formGroup.controls.realisator.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.realisator.errors?.minlength.requiredLength}} caractères.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Url de la bande-annonce</mat-label>
+    <input matInput
+           formControlName="preview" name="preview" />
+    <mat-error *ngIf="formGroup.controls.preview.errors?.minlength">
+      Ce champ doit contenir au moins {{formGroup.controls.preview.errors?.minlength.requiredLength}} caractères.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Durée</mat-label>
+    <input matInput placeholder="1950"
+           type="number" formControlName="duration" name="duration" />
+    <mat-hint>Format : minutes</mat-hint>
+    <mat-error *ngIf="formGroup.controls.duration.errors?.required">
+      Ce champ est requis.
+    </mat-error>
+    <mat-error *ngIf="formGroup.controls.duration.errors?.max">
+      Ce champ doit être inférieur à {{formGroup.controls.duration.errors?.max.max}}.
+    </mat-error>
+  </mat-form-field>
+
   <button mat-flat-button color="primary">
     Save
   </button>
