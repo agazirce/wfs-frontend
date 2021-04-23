@@ -13,7 +13,7 @@ export enum UserRole {
 }
 
 export interface IAuthMeDto {
-  id: number;
+  id: string;
   firstName: string;
   lastName: string;
   email: string;

@@ -15,10 +15,3 @@ export enum Gender {
   Other = 'Other',
   HelicoptereDeCombat = 'Helicoptere de combat'
 }
-
-export enum CharacterItemAttribute {
-  id = 'ID',
-  firstName = 'FIRST_NAME',
-  lastName = 'LAST_NAME',
-  birthYear = 'BIRTH_YEAR'
-}
