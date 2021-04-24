@@ -4,9 +4,6 @@
     <mat-label>Prénom</mat-label>
     <input matInput
            formControlName="firstName" name="firstName" />
-    <mat-error *ngIf="formGroup.controls.firstName.errors?.minlength">
-      Ce champ doit contenir au moins {{formGroup.controls.firstName.errors?.minlength.requiredLength}} caractères.
-    </mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -28,9 +25,16 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Genre</mat-label>
+    <mat-label>Nationalité</mat-label>
     <input matInput
-           formControlName="gender" name="gender" />
+           formControlName="nationality" name="nationality" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Genre</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let gender of keys(genders)" [value]="genders[gender]">{{ gender }}</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field>

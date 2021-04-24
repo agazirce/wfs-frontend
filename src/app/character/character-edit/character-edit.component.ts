@@ -4,7 +4,7 @@ import {CharacterService} from '../character.service';
 import {ActivatedRoute} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {ICharacter} from '../character.model';
+import {Gender, ICharacter} from '../character.model';
 
 @Component({
   selector: 'app-character-edit',
@@ -18,6 +18,8 @@ export class CharacterEditComponent {
 
   formGroup: FormGroup;
   character$: Observable<ICharacter>;
+  genders = Gender;
+  keys = Object.keys;
 
   constructor(
     private characterService: CharacterService,
@@ -26,12 +28,13 @@ export class CharacterEditComponent {
   ) {
     this.formGroup = this.formBuilder.group({
       id: [],
-      firstName: [undefined, [Validators.minLength(2)]],
+      firstName: [undefined],
       lastName: [undefined],
       nickname: [undefined],
       birthYear: [undefined],
-      gender: [undefined, [Validators.minLength(4)]],
-      species: [undefined, [Validators.minLength(2)]]
+      nationality: [undefined],
+      gender: [undefined],
+      species: [undefined]
     });
     this.reset();
     this.character$ = this.route.params
@@ -46,9 +49,9 @@ export class CharacterEditComponent {
             lastName: character.lastName,
             nickname: character.nickname,
             birthYear: character.birthYear,
+            nationality: character.nationality,
             gender: character.gender,
-            species: character.species,
-            actor: character.actor
+            species: character.species
           });
         })
       );
@@ -62,9 +65,9 @@ export class CharacterEditComponent {
         lastName: this.formGroup.value.lastName,
         nickname: this.formGroup.value.nickname,
         birthYear: this.formGroup.value.birthYear,
+        nationality: this.formGroup.value.nationality,
         gender: this.formGroup.value.gender,
-        species: this.formGroup.value.species,
-        actor: this.formGroup.value.actor
+        species: this.formGroup.value.species
       };
       this.characterService.saveItem(character)
         .subscribe(createdCharacter => console.log(createdCharacter));
