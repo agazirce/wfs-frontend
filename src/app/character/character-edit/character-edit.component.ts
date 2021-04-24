@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {CharacterService} from '../character.service';
 import {ActivatedRoute} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
@@ -28,14 +28,14 @@ export class CharacterEditComponent {
   ) {
     this.formGroup = this.formBuilder.group({
       id: [],
-      firstName: [undefined],
-      lastName: [undefined],
-      nickname: [undefined],
+      firstName: [''],
+      lastName: [''],
+      nickname: [''],
       birthYear: [undefined],
       nationality: [undefined],
       gender: [undefined],
       species: [undefined]
-    });
+    }, { validators: this.atLeastOne('firstName', 'lastName', 'nickname') });
     this.reset();
     this.character$ = this.route.params
       .pipe(
@@ -78,6 +78,22 @@ export class CharacterEditComponent {
   reset(): void {
     this.formGroup.reset({
     });
+  }
+
+  atLeastOne(firstControl: string, secondControl: string, thirdControl: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const firstName = control.get(firstControl)?.value;
+      const lastName = control.get(secondControl)?.value;
+      const nickname = control.get(thirdControl)?.value;
+
+      if ((firstName === null || firstName === '')
+        && (lastName === null || lastName === '')
+        && (nickname === null || nickname === '')) {
+        return {none: true};
+      }
+
+      return null;
+    };
   }
 
 }

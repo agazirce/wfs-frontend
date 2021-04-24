@@ -18,6 +18,10 @@
            formControlName="nickname" name="nickname" />
   </mat-form-field>
 
+  <mat-error *ngIf="!formGroup.valid">
+    Parmi Prénom, Nom et Surnom, au moins l'un des champs doit être rempli.
+  </mat-error>
+
   <mat-form-field>
     <mat-label>Année de naissance</mat-label>
     <input matInput
@@ -33,7 +37,7 @@
   <mat-form-field>
     <mat-label>Genre</mat-label>
     <mat-select>
-      <mat-option *ngFor="let gender of keys(genders)" [value]="genders[gender]">{{ gender }}</mat-option>
+      <mat-option *ngFor="let gender of keys(genders)" [value]="gender">{{ gender }}</mat-option>
     </mat-select>
   </mat-form-field>
 
@@ -41,7 +45,6 @@
     <mat-label>Espèce</mat-label>
     <input matInput
            formControlName="species" name="species" />
-
   </mat-form-field>
 
   <div>
@@ -53,4 +56,5 @@
     </button>
   </div>
 </form>
+
 <a mat-button routerLink="/characters">Retour à la liste</a>
