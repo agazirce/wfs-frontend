@@ -20,7 +20,6 @@ export class CharacterItemComponent {
     private route: ActivatedRoute,
     private router: Router) {
     this.initComponent();
-    console.log('Constructor');
   }
 
   initComponent(): void {
@@ -34,8 +33,8 @@ export class CharacterItemComponent {
   }
 
   remove(): void {
-    if (this.item?.id){
-      this.service.removeItem(this.item.id).subscribe();
+    if (this.item?._id){
+      this.service.removeItem(this.item._id).subscribe();
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate(['/characters']);
       });

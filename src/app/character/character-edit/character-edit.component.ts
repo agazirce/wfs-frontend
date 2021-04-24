@@ -27,7 +27,7 @@ export class CharacterEditComponent {
     private route: ActivatedRoute
   ) {
     this.formGroup = this.formBuilder.group({
-      id: [],
+      _id: [],
       firstName: [''],
       lastName: [''],
       nickname: [''],
@@ -44,7 +44,7 @@ export class CharacterEditComponent {
         switchMap(id => this.characterService.getItem(id)),
         tap(character => {
           this.formGroup.patchValue({
-            id: character.id,
+            _id: character._id,
             firstName: character.firstName,
             lastName: character.lastName,
             nickname: character.nickname,
@@ -60,7 +60,7 @@ export class CharacterEditComponent {
   save(): void {
     if (this.formGroup.valid) {
       const character: ICharacter = {
-        id: this.formGroup.value.id,
+        _id: this.formGroup.value._id,
         firstName: this.formGroup.value.firstName,
         lastName: this.formGroup.value.lastName,
         nickname: this.formGroup.value.nickname,

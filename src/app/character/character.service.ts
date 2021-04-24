@@ -25,7 +25,7 @@ export class CharacterService {
   }
 
   saveItem(character: ICharacter): Observable<ICharacter> {
-    const save$ = character.id
+    const save$ = character._id
       ? this.characterResource.update(character)
       : this.characterResource.create(character);
     return save$;

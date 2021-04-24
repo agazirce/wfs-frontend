@@ -30,7 +30,7 @@ export class CharacterResource {
   }
 
   update(character: ICharacter): Observable<any> {
-    return this.http.put<ICharacter>('http://localhost:3000/characters/' + character.id, character);
+    return this.http.put<ICharacter>('http://localhost:3000/characters/' + character._id, character);
   }
 
   remove(id: string): Observable<any> {

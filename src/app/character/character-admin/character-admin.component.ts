@@ -19,7 +19,7 @@ export class CharacterAdminComponent {
   ) { }
 
   datasource = this.service.getAllItems();
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'birthYear', 'update', 'remove'];
+  displayedColumns: string[] = ['_id', 'firstName', 'lastName', 'birthYear', 'update', 'remove'];
 
   remove(id: string): void {
     if (id){
