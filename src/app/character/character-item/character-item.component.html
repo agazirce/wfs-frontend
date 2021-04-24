@@ -1,26 +1,39 @@
 <mat-chip-list>
-  <mat-chip selected color="primary">
+  <mat-chip *ngIf="item?.firstName" selected color="primary">
     {{ item?.firstName }}
   </mat-chip>
-  <mat-chip selected color="accent">
+  <mat-chip *ngIf="item?.lastName" selected color="primary">
     {{ item?.lastName }}
   </mat-chip>
-  <mat-chip selected color="accent">
+  <mat-chip *ngIf="item?.nickname" selected color="primary">
     {{ item?.nickname }}
   </mat-chip>
-  <mat-chip selected color="warn">
+  <mat-chip *ngIf="item?.birthYear" selected color="accent">
     {{ item?.birthYear || 1970 }}
   </mat-chip>
-  <mat-chip selected color="warn">
+  <mat-chip *ngIf="item?.nationality && isDetail" selected color="warn">
+    {{ item?.nationality }}
+  </mat-chip>
+  <mat-chip *ngIf="item?.gender && isDetail" selected color="warn">
     {{ item?.gender }}
   </mat-chip>
-  <mat-chip selected color="warn">
+  <mat-chip *ngIf="item?.species && isDetail" selected color="warn">
     {{ item?.species }}
   </mat-chip>
-  <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id">Détail</a>
-  <a mat-button [routerLink]="'/characters/edit/' + item?.id">Modifier</a>
+  <a mat-button *ngIf="isDetail == false" [routerLink]="item?._id">
+    <mat-icon>
+      zoom_in
+    </mat-icon>
+  </a>
+  <a mat-button [routerLink]="'/characters/edit/' + item?._id">
+    <mat-icon>
+      edit
+    </mat-icon>
+  </a>
   <mat-chip (click)="remove()">
-    Supprimer
+    <mat-icon>
+      delete
+    </mat-icon>
   </mat-chip>
 </mat-chip-list>
 <a mat-button *ngIf="isDetail" routerLink="/characters">Retour à la liste</a>
