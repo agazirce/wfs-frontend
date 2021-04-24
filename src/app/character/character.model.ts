@@ -4,9 +4,9 @@ export interface ICharacter {
   lastName: string | null;
   nickname: string | null;
   birthYear: number | null;
+  nationality: string | null;
   gender: Gender | null;
   species: string | null;
-  actor: string | null;
 }
 
 export enum Gender {
