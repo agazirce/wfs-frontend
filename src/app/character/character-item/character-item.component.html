@@ -17,9 +17,6 @@
   <mat-chip selected color="warn">
     {{ item?.species }}
   </mat-chip>
-  <mat-chip selected color="warn">
-    {{ item?.actor }}
-  </mat-chip>
   <a mat-button *ngIf="isDetail == false" [routerLink]="item?.id">Détail</a>
   <a mat-button [routerLink]="'/characters/edit/' + item?.id">Modifier</a>
   <mat-chip (click)="remove()">
