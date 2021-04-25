@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {CharacterService} from '../character.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Gender, ICharacter} from '../character.model';
@@ -20,11 +20,13 @@ export class CharacterEditComponent {
   character$: Observable<ICharacter>;
   genders = Gender;
   keys = Object.keys;
+  isAdmin: boolean;
 
   constructor(
     private characterService: CharacterService,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.formGroup = this.formBuilder.group({
       _id: [],
@@ -55,6 +57,7 @@ export class CharacterEditComponent {
           });
         })
       );
+    this.isAdmin = router.url.includes('admin');
   }
 
   save(): void {
