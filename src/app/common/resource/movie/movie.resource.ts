@@ -22,6 +22,10 @@ export class MovieResource {
     return this.http.post<IMovie>('http://localhost:3000/movies', movie);
   }
 
+  update(id: string, movie: IMovie): Observable<IMovie> {
+    return this.http.put<IMovie>('http://localhost:3000/movies/'+ id, movie);
+  }
+
   remove(id: string): Observable<any> {
     return this.http.delete('http://localhost:3000/movies/' + id);
   }

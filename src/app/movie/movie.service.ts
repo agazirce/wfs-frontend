@@ -22,6 +22,10 @@ export class MovieService {
     return this.movieResource.create(movie);
   }
 
+  updateItem(id: string , movie: IMovie): Observable<IMovie> {
+    return this.movieResource.update(id , movie);
+  }
+
   removeItem(id: string): Observable<any> {
     return this.movieResource.remove(id);
   }
