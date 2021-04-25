@@ -57,4 +57,5 @@
   </div>
 </form>
 
-<a mat-button routerLink="/characters">Retour à la liste</a>
+<a mat-button *ngIf="!isAdmin" routerLink="/characters">Retour à la liste</a>
+<a mat-button *ngIf="isAdmin" routerLink="/characters/admin" >Retour à la liste</a>

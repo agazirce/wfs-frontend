@@ -29,6 +29,11 @@ const routes: Routes = [
     canActivate: [MeGuard],
     path: 'edit/:id',
     component: CharacterEditComponent
+  },
+  {
+    canActivate: [MeGuard, AdminGuard],
+    path: 'edit/:id/admin',
+    component: CharacterEditComponent
   }
 ];
 
