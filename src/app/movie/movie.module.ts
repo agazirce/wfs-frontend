@@ -12,6 +12,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';
 import {MovieRoutingModule} from './movie-routing.module';
 import { MovieAdminComponent } from './movie-admin/movie-admin.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -28,6 +30,8 @@ import { MovieAdminComponent } from './movie-admin/movie-admin.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatIconModule,
+    MatTableModule,
     RouterModule,
     MovieRoutingModule
   ],
