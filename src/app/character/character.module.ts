@@ -15,6 +15,7 @@ import {CharacterRoutingModule} from './character-routing.module';
 import { CharacterAdminComponent } from './character-admin/character-admin.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {MatIconModule} from '@angular/material/icon';
     CharacterRoutingModule,
     MatTableModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   exports: [
     CharacterComponent

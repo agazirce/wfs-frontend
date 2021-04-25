@@ -1,10 +1,10 @@
 import { Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import {CharacterService} from '../character.service';
 import {ActivatedRoute} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {ICharacter} from '../character.model';
+import {Gender, ICharacter} from '../character.model';
 
 @Component({
   selector: 'app-character-edit',
@@ -18,6 +18,8 @@ export class CharacterEditComponent {
 
   formGroup: FormGroup;
   character$: Observable<ICharacter>;
+  genders = Gender;
+  keys = Object.keys;
 
   constructor(
     private characterService: CharacterService,
@@ -25,14 +27,15 @@ export class CharacterEditComponent {
     private route: ActivatedRoute
   ) {
     this.formGroup = this.formBuilder.group({
-      id: [],
-      firstName: [undefined, [Validators.minLength(2)]],
-      lastName: [undefined],
-      nickname: [undefined],
+      _id: [],
+      firstName: [''],
+      lastName: [''],
+      nickname: [''],
       birthYear: [undefined],
-      gender: [undefined, [Validators.minLength(4)]],
-      species: [undefined, [Validators.minLength(2)]]
-    });
+      nationality: [undefined],
+      gender: [undefined],
+      species: [undefined]
+    }, { validators: this.atLeastOne('firstName', 'lastName', 'nickname') });
     this.reset();
     this.character$ = this.route.params
       .pipe(
@@ -41,14 +44,14 @@ export class CharacterEditComponent {
         switchMap(id => this.characterService.getItem(id)),
         tap(character => {
           this.formGroup.patchValue({
-            id: character.id,
+            _id: character._id,
             firstName: character.firstName,
             lastName: character.lastName,
             nickname: character.nickname,
             birthYear: character.birthYear,
+            nationality: character.nationality,
             gender: character.gender,
-            species: character.species,
-            actor: character.actor
+            species: character.species
           });
         })
       );
@@ -57,14 +60,14 @@ export class CharacterEditComponent {
   save(): void {
     if (this.formGroup.valid) {
       const character: ICharacter = {
-        id: this.formGroup.value.id,
+        _id: this.formGroup.value._id,
         firstName: this.formGroup.value.firstName,
         lastName: this.formGroup.value.lastName,
         nickname: this.formGroup.value.nickname,
         birthYear: this.formGroup.value.birthYear,
+        nationality: this.formGroup.value.nationality,
         gender: this.formGroup.value.gender,
-        species: this.formGroup.value.species,
-        actor: this.formGroup.value.actor
+        species: this.formGroup.value.species
       };
       this.characterService.saveItem(character)
         .subscribe(createdCharacter => console.log(createdCharacter));
@@ -75,6 +78,22 @@ export class CharacterEditComponent {
   reset(): void {
     this.formGroup.reset({
     });
+  }
+
+  atLeastOne(firstControl: string, secondControl: string, thirdControl: string): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const firstName = control.get(firstControl)?.value;
+      const lastName = control.get(secondControl)?.value;
+      const nickname = control.get(thirdControl)?.value;
+
+      if ((firstName === null || firstName === '')
+        && (lastName === null || lastName === '')
+        && (nickname === null || nickname === '')) {
+        return {none: true};
+      }
+
+      return null;
+    };
   }
 
 }
