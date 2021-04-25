@@ -9,7 +9,7 @@
     {{ item?.nickname }}
   </mat-chip>
   <mat-chip *ngIf="item?.birthYear" selected color="accent">
-    {{ item?.birthYear || 1970 }}
+    {{ item?.birthYear }}
   </mat-chip>
   <mat-chip *ngIf="item?.nationality && isDetail" selected color="warn">
     {{ item?.nationality }}
