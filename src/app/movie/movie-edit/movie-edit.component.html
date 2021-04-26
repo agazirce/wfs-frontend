@@ -1,8 +1,7 @@
 <form [formGroup]="formGroup" (ngSubmit)="save()">
   <mat-form-field>
     <mat-label>Titre</mat-label>
-    <input matInput
-           formControlName="title" name="title" />
+    <input matInput formControlName="title" name="title" />
     <mat-error *ngIf="formGroup.controls.title.errors?.required">
       Ce champ est requis.
     </mat-error>
@@ -12,16 +11,14 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Url de l'image</mat-label>
-    <input matInput
-           formControlName="affiche" name="affiche" />
+    <input matInput formControlName="affiche" name="affiche" />
     <mat-error *ngIf="formGroup.controls.affiche.errors?.minlength">
       Ce champ doit contenir au moins {{formGroup.controls.affiche.errors?.minlength.requiredLength}} caractères.
     </mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Année de sortie</mat-label>
-    <input matInput placeholder="1950"
-           type="number" formControlName="year" name="year" />
+    <input matInput placeholder="1950" type="number" formControlName="year" name="year" />
     <mat-hint>Format : YYYY</mat-hint>
     <mat-error *ngIf="formGroup.controls.year.errors?.required">
       Ce champ est requis.
@@ -33,8 +30,7 @@
 
   <mat-form-field>
     <mat-label>Genre</mat-label>
-    <input matInput
-           formControlName="genre" name="genre" />
+    <input matInput formControlName="genre" name="genre" />
     <mat-error *ngIf="formGroup.controls.genre.errors?.minlength">
       Ce champ doit contenir au moins {{formGroup.controls.genre.errors?.minlength.requiredLength}} caractères.
     </mat-error>
@@ -42,8 +38,7 @@
 
   <mat-form-field>
     <mat-label>Réalisteur</mat-label>
-    <input matInput
-           formControlName="realisator" name="realisator" />
+    <input matInput formControlName="realisator" name="realisator" />
     <mat-error *ngIf="formGroup.controls.realisator.errors?.minlength">
       Ce champ doit contenir au moins {{formGroup.controls.realisator.errors?.minlength.requiredLength}} caractères.
     </mat-error>
@@ -51,8 +46,7 @@
 
   <mat-form-field>
     <mat-label>Url de la bande-annonce</mat-label>
-    <input matInput
-           formControlName="preview" name="preview" />
+    <input matInput formControlName="preview" name="preview" />
     <mat-error *ngIf="formGroup.controls.preview.errors?.minlength">
       Ce champ doit contenir au moins {{formGroup.controls.preview.errors?.minlength.requiredLength}} caractères.
     </mat-error>
@@ -60,8 +54,7 @@
 
   <mat-form-field>
     <mat-label>Durée</mat-label>
-    <input matInput placeholder="1950"
-           type="number" formControlName="duration" name="duration" />
+    <input matInput placeholder="1950" type="number" formControlName="duration" name="duration" />
     <mat-hint>Format : minutes</mat-hint>
     <mat-error *ngIf="formGroup.controls.duration.errors?.required">
       Ce champ est requis.
@@ -78,4 +71,31 @@
     Reset
   </button>
 </form>
+
+<mat-list>
+  <h3> Liste des personnage à ajouter </h3>
+  <mat-list-item *ngFor="let character of characters">
+    {{character.firstName}} {{character.lastName}}
+    <button (click)="pushCharacter(character)">
+      <mat-icon>
+        add
+      </mat-icon>
+    </button>
+  </mat-list-item>
+
+</mat-list>
+
+<mat-list>
+  <h3> Liste des personnages du Film </h3>
+  <mat-list-item *ngFor="let character of movie?.characters">
+    {{character.firstName}} {{character.lastName}}
+    <button (click)="popCharacter(character)">
+      <mat-icon>
+        delete
+      </mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+
+
 <a mat-button routerLink="/movies">Retour à la liste</a>

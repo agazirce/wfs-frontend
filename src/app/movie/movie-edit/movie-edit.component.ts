@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { ICharacter } from 'src/app/character/character.model';
+import { CharacterService } from 'src/app/character/character.service';
 import { IMovie } from '../movie.model';
 import { MovieService } from '../movie.service';
 
@@ -9,7 +11,8 @@ import { MovieService } from '../movie.service';
   templateUrl: './movie-edit.component.html',
   styleUrls: ['./movie-edit.component.scss'],
   providers: [
-    MovieService
+    MovieService,
+    CharacterService
   ]
 })
 export class MovieEditComponent {
@@ -17,11 +20,14 @@ export class MovieEditComponent {
   update: boolean = false;
   movie: IMovie;
   id: string;
+  characters: ICharacter[];
+  charactersAdd: ICharacter[] = [];
+  charactersDel: ICharacter[] = [];
 
   constructor(
     private movieService: MovieService,
+    private characterService: CharacterService,
     private formBuilder: FormBuilder,
-    private router: Router,
     private route: ActivatedRoute,
   ) {
     this.id = this.route.snapshot.params.id;
@@ -31,6 +37,9 @@ export class MovieEditComponent {
         this.movie = movie;
         this.reset();
       });
+      this.characterService.getAllItems().subscribe(characters => {
+        this.characters = characters;
+      })
     }
     this.formGroup = this.formBuilder.group({
       _id: [undefined],
@@ -56,6 +65,9 @@ export class MovieEditComponent {
         this.movie.duration = this.formGroup.value.duration;
         this.movie.preview = this.formGroup.value.preview;
         this.movieService.updateItem(this.id, this.movie).subscribe(updatedMovie => console.log(updatedMovie));
+        //On remet à zéro les tableau de sauvegardes
+        this.charactersAdd = [];
+        this.charactersDel = [];
         this.reset();
 
       }
@@ -69,6 +81,7 @@ export class MovieEditComponent {
           realisator: this.formGroup.value.realisator,
           duration: this.formGroup.value.duration,
           preview: this.formGroup.value.preview,
+          characters: [],
         };
         this.movieService.saveItem(movie)
           .subscribe(createdMovie => console.log(createdMovie));
@@ -78,8 +91,22 @@ export class MovieEditComponent {
     }
   }
 
+  pushCharacter(character: ICharacter) {
+    this.movie.characters.push(character);
+    this.charactersAdd.push(character);
+  }
+
+  popCharacter(character: ICharacter) {
+    var index = this.movie.characters.indexOf(character);
+    if (index > -1) {
+      this.movie.characters.splice(index, 1);
+    }
+    this.charactersDel.push(character);
+  }
+
   reset(): void {
     if (this.id && this.movie) {
+      // Si on est sur un update on remet les valeurs précédente de movie
       this.formGroup.reset({
         _id: this.movie._id,
         title: this.movie.title,
@@ -90,6 +117,20 @@ export class MovieEditComponent {
         duration: this.movie.duration,
         preview: this.movie.preview,
       })
+      //On remet tout les characters enlevé
+      this.charactersDel.forEach(character => {
+        this.movie.characters.push(character);
+      })
+      //On retire tout les characters ajouté
+      this.charactersAdd.forEach(character => {
+        var index = this.movie.characters.indexOf(character);
+        if (index > -1) {
+          this.movie.characters.splice(index, 1);
+        }
+      });
+      //On remet à zéro les tableau de sauvegardes
+      this.charactersAdd = [];
+      this.charactersDel = [];
     } else {
       this.formGroup.reset({
         year: 1970,

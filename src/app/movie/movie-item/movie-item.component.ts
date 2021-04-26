@@ -14,6 +14,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class MovieItemComponent {
   @Input() item: IMovie | undefined;
   isDetail = false;
+  emptyArray: boolean;
 
   constructor(
     private service: MovieService,
@@ -28,6 +29,9 @@ export class MovieItemComponent {
       this.isDetail = true;
       this.service.getItem(id).subscribe(movie => {
         this.item = movie;
+        if(movie.characters.length === 0){
+          this.emptyArray = true;
+        }
       });
     }
   }

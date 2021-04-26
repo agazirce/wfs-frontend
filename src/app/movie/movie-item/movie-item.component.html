@@ -20,7 +20,14 @@
   <mat-card-content *ngIf="item?.preview && isDetail">
     <a mat-button href="{{ item?.preview }}">bande-annonce</a>
   </mat-card-content>
-
+  <mat-card-content *ngIf="!emptyArray && isDetail">
+    <mat-list>
+      <h3> Liste des personnages du Film </h3>
+      <mat-list-item *ngFor="let character of item?.characters">
+        {{character.firstName}} {{character.lastName}}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
   <a mat-button *ngIf="isDetail == false" [routerLink]="item?._id">Détail</a>
   <a mat-button [routerLink]="'/movies/edit/' + item?._id">Modifier</a>
   <a mat-button (click)="remove()">Supprimer</a>

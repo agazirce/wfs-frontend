@@ -1,3 +1,5 @@
+import { ICharacter } from "../character/character.model";
+
 export interface IMovie {
   _id: string | null;
   title: string;
@@ -7,4 +9,5 @@ export interface IMovie {
   realisator: string;
   duration: number;
   preview: string;
+  characters: ICharacter[];
 }

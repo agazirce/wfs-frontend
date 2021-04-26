@@ -14,6 +14,8 @@ import {MovieRoutingModule} from './movie-routing.module';
 import { MovieAdminComponent } from './movie-admin/movie-admin.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
+import { CharacterItemComponent } from '../character/character-item/character-item.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,7 @@ import { MatTableModule } from '@angular/material/table';
     MovieListComponent,
     MovieItemComponent,
     MovieEditComponent,
-    MovieAdminComponent
+    MovieAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +33,7 @@ import { MatTableModule } from '@angular/material/table';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
     MatTableModule,
     RouterModule,
     MovieRoutingModule
