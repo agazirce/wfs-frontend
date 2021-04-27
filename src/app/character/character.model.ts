@@ -5,13 +5,6 @@ export interface ICharacter {
   nickname: string | null;
   birthYear: number | null;
   nationality: string | null;
-  gender: Gender | null;
+  gender: string | null | undefined;
   species: string | null;
-}
-
-export enum Gender {
-  Male = 'Male',
-  Female = 'Female',
-  Other = 'Other',
-  HelicoptereDeCombat = 'Helicoptere de combat'
 }

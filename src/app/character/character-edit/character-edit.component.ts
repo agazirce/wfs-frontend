@@ -4,7 +4,7 @@ import {CharacterService} from '../character.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {Gender, ICharacter} from '../character.model';
+import {ICharacter} from '../character.model';
 
 @Component({
   selector: 'app-character-edit',
@@ -18,9 +18,8 @@ export class CharacterEditComponent {
 
   formGroup: FormGroup;
   character$: Observable<ICharacter>;
-  genders = Gender;
-  keys = Object.keys;
   isAdmin: boolean;
+  selectedGenre: string;
 
   constructor(
     private characterService: CharacterService,
@@ -29,10 +28,10 @@ export class CharacterEditComponent {
     private router: Router
   ) {
     this.formGroup = this.formBuilder.group({
-      _id: [],
-      firstName: [''],
-      lastName: [''],
-      nickname: [''],
+      _id: [undefined],
+      firstName: [undefined],
+      lastName: [undefined],
+      nickname: [undefined],
       birthYear: [undefined],
       nationality: [undefined],
       gender: [undefined],
@@ -55,6 +54,9 @@ export class CharacterEditComponent {
             gender: character.gender,
             species: character.species
           });
+          if (character.gender){
+            this.selectedGenre = character.gender;
+          }
         })
       );
     this.isAdmin = router.url.includes('admin');
@@ -63,14 +65,14 @@ export class CharacterEditComponent {
   save(): void {
     if (this.formGroup.valid) {
       const character: ICharacter = {
-        _id: this.formGroup.value._id,
-        firstName: this.formGroup.value.firstName,
-        lastName: this.formGroup.value.lastName,
-        nickname: this.formGroup.value.nickname,
-        birthYear: this.formGroup.value.birthYear,
-        nationality: this.formGroup.value.nationality,
-        gender: this.formGroup.value.gender,
-        species: this.formGroup.value.species
+        _id: this.formGroup.value._id ? this.formGroup.value._id : undefined,
+        firstName: this.formGroup.value.firstName ? this.formGroup.value.firstName : undefined,
+        lastName: this.formGroup.value.lastName ? this.formGroup.value.lastName : undefined,
+        nickname: this.formGroup.value.nickname ? this.formGroup.value.nickname : undefined,
+        birthYear: this.formGroup.value.birthYear ? this.formGroup.value.birthYear : undefined,
+        nationality: this.formGroup.value.nationality ? this.formGroup.value.nationality : undefined,
+        gender: this.selectedGenre ? this.selectedGenre : undefined,
+        species: this.formGroup.value.species ? this.formGroup.value.species : undefined
       };
       this.characterService.saveItem(character)
         .subscribe(createdCharacter => console.log(createdCharacter));
