@@ -37,10 +37,10 @@ export class MovieEditComponent {
         this.movie = movie;
         this.reset();
       });
-      this.characterService.getAllItems().subscribe(characters => {
-        this.characters = characters;
-      })
     }
+    this.characterService.getAllItems().subscribe(characters => {
+      this.characters = characters;
+    })
     this.formGroup = this.formBuilder.group({
       _id: [undefined],
       title: [undefined, [Validators.required, Validators.minLength(2)]],
@@ -81,7 +81,7 @@ export class MovieEditComponent {
           realisator: this.formGroup.value.realisator,
           duration: this.formGroup.value.duration,
           preview: this.formGroup.value.preview,
-          characters: [],
+          characters: this.charactersAdd ,
         };
         this.movieService.saveItem(movie)
           .subscribe(createdMovie => console.log(createdMovie));
@@ -92,16 +92,26 @@ export class MovieEditComponent {
   }
 
   pushCharacter(character: ICharacter) {
-    this.movie.characters.push(character);
+    if(this.id){
+      this.movie.characters.push(character);
+    }
     this.charactersAdd.push(character);
   }
 
   popCharacter(character: ICharacter) {
-    var index = this.movie.characters.indexOf(character);
-    if (index > -1) {
-      this.movie.characters.splice(index, 1);
+    if(this.id){
+      var index = this.movie.characters.indexOf(character);
+      if (index > -1) {
+        this.movie.characters.splice(index, 1);
+      }
+      this.charactersDel.push(character);
     }
-    this.charactersDel.push(character);
+    else{
+      var index = this.charactersAdd.indexOf(character);
+      if (index > -1) {
+        this.charactersAdd.splice(index, 1);
+      }
+    }
   }
 
   reset(): void {
@@ -132,6 +142,7 @@ export class MovieEditComponent {
       this.charactersAdd = [];
       this.charactersDel = [];
     } else {
+      this.charactersAdd = [];
       this.formGroup.reset({
         year: 1970,
         duration: 120

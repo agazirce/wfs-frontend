@@ -85,9 +85,21 @@
 
 </mat-list>
 
-<mat-list>
+<mat-list *ngIf="movie">
   <h3> Liste des personnages du Film </h3>
   <mat-list-item *ngFor="let character of movie?.characters">
+    {{character.firstName}} {{character.lastName}}
+    <button (click)="popCharacter(character)">
+      <mat-icon>
+        delete
+      </mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+
+<mat-list *ngIf="!movie">
+  <h3> Liste des personnages du Film </h3>
+  <mat-list-item *ngFor="let character of charactersAdd">
     {{character.firstName}} {{character.lastName}}
     <button (click)="popCharacter(character)">
       <mat-icon>
