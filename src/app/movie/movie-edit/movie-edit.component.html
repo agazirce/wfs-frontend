@@ -73,7 +73,7 @@
 </form>
 
 <mat-list>
-  <h3> Liste des personnage à ajouter </h3>
+  <h3> Liste des personnages à ajouter </h3>
   <mat-list-item *ngFor="let character of characters">
     {{character.firstName}} {{character.lastName}}
     <button (click)="pushCharacter(character)">

@@ -29,7 +29,7 @@ export class MovieItemComponent {
       this.isDetail = true;
       this.service.getItem(id).subscribe(movie => {
         this.item = movie;
-        if(movie.characters.length === 0){
+        if (movie.characters.length === 0){
           this.emptyArray = true;
         }
       });

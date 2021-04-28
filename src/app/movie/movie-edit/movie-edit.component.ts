@@ -17,7 +17,7 @@ import { MovieService } from '../movie.service';
 })
 export class MovieEditComponent {
   formGroup: FormGroup;
-  update: boolean = false;
+  update = false;
   movie: IMovie;
   id: string;
   characters: ICharacter[];
@@ -40,7 +40,7 @@ export class MovieEditComponent {
     }
     this.characterService.getAllItems().subscribe(characters => {
       this.characters = characters;
-    })
+    });
     this.formGroup = this.formBuilder.group({
       _id: [undefined],
       title: [undefined, [Validators.required, Validators.minLength(2)]],
@@ -65,7 +65,7 @@ export class MovieEditComponent {
         this.movie.duration = this.formGroup.value.duration;
         this.movie.preview = this.formGroup.value.preview;
         this.movieService.updateItem(this.id, this.movie).subscribe(updatedMovie => console.log(updatedMovie));
-        //On remet à zéro les tableau de sauvegardes
+        // On remet à zéro les tableau de sauvegardes
         this.charactersAdd = [];
         this.charactersDel = [];
         this.reset();
@@ -91,23 +91,23 @@ export class MovieEditComponent {
     }
   }
 
-  pushCharacter(character: ICharacter) {
-    if(this.id){
+  pushCharacter(character: ICharacter): void {
+    if (this.id){
       this.movie.characters.push(character);
     }
     this.charactersAdd.push(character);
   }
 
-  popCharacter(character: ICharacter) {
-    if(this.id){
-      var index = this.movie.characters.indexOf(character);
+  popCharacter(character: ICharacter): void {
+    if (this.id){
+      const index = this.movie.characters.indexOf(character);
       if (index > -1) {
         this.movie.characters.splice(index, 1);
       }
       this.charactersDel.push(character);
     }
     else{
-      var index = this.charactersAdd.indexOf(character);
+      const index = this.charactersAdd.indexOf(character);
       if (index > -1) {
         this.charactersAdd.splice(index, 1);
       }
@@ -126,19 +126,19 @@ export class MovieEditComponent {
         realisator: this.movie.realisator,
         duration: this.movie.duration,
         preview: this.movie.preview,
-      })
-      //On remet tout les characters enlevé
+      });
+      // On remet tout les characters enlevé
       this.charactersDel.forEach(character => {
         this.movie.characters.push(character);
-      })
-      //On retire tout les characters ajouté
+      });
+      // On retire tout les characters ajouté
       this.charactersAdd.forEach(character => {
-        var index = this.movie.characters.indexOf(character);
+        const index = this.movie.characters.indexOf(character);
         if (index > -1) {
           this.movie.characters.splice(index, 1);
         }
       });
-      //On remet à zéro les tableau de sauvegardes
+      // On remet à zéro les tableau de sauvegardes
       this.charactersAdd = [];
       this.charactersDel = [];
     } else {
