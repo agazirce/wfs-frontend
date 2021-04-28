@@ -60,5 +60,29 @@
   </div>
 </form>
 
+<mat-list>
+  <h3> Liste des acteurs à ajouter </h3>
+  <mat-list-item *ngFor="let actor of actors">
+    {{actor.firstName}} {{actor.lastName}}
+    <button (click)="pushActor(actor)">
+      <mat-icon>
+        add
+      </mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+
+<mat-list>
+  <h3> Liste des acteurs ayant joué ce personnage </h3>
+  <mat-list-item *ngFor="let actor of characterActors">
+    {{actor.firstName}} {{actor.lastName}}
+    <button (click)="popActor(actor)">
+      <mat-icon>
+        delete
+      </mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+
 <a mat-button *ngIf="!isAdmin" routerLink="/characters">Retour à la liste</a>
 <a mat-button *ngIf="isAdmin" routerLink="/characters/admin" >Retour à la liste</a>

@@ -7,4 +7,6 @@ export interface ICharacter {
   nationality: string | null;
   gender: string | null | undefined;
   species: string | null;
+  actors: ICharacter[];
 }
+// TODO passer actors en IActor[] une fois implémenté

@@ -20,6 +20,12 @@
   <mat-chip *ngIf="item?.species && isDetail" selected color="warn">
     {{ item?.species }}
   </mat-chip>
+  <mat-list *ngIf="item?.actors && isDetail">
+    <h3> Liste des acteurs ayant joué ce personnage </h3>
+    <mat-list-item *ngFor="let actor of item?.actors">
+      {{actor.firstName}} {{actor.lastName}}
+    </mat-list-item>
+  </mat-list>
   <a mat-button *ngIf="isDetail == false" [routerLink]="item?._id">
     <mat-icon>
       zoom_in

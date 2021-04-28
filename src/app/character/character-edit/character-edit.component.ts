@@ -18,8 +18,11 @@ export class CharacterEditComponent {
 
   formGroup: FormGroup;
   character$: Observable<ICharacter>;
+  id: string;
   isAdmin: boolean;
   selectedGenre: string;
+  characterActors: ICharacter[] = [];
+  actors: ICharacter[] = [];
 
   constructor(
     private characterService: CharacterService,
@@ -38,6 +41,12 @@ export class CharacterEditComponent {
       species: [undefined]
     }, { validators: this.atLeastOne('firstName', 'lastName', 'nickname') });
     this.reset();
+    if (this.router.url === '/characters/edit') {
+      this.characterService.getAllItems().subscribe(actors => {
+        this.actors = actors;
+      });
+    }
+    // update form with character informations
     this.character$ = this.route.params
       .pipe(
         map(params => params.id),
@@ -53,6 +62,24 @@ export class CharacterEditComponent {
             nationality: character.nationality,
             gender: character.gender,
             species: character.species
+          });
+          this.characterService.getAllItems().subscribe(actors => {
+            if (character.actors.length === 0){
+              this.actors = actors;
+            } else {
+              // generate 2 arrays :
+              // - 1 with actors we could add
+              // - 1 with actors we could remove
+              actors.forEach(actor => {
+                character.actors.forEach(characterActor => {
+                  if (actor._id === characterActor._id) {
+                    this.characterActors.push(actor);
+                  } else {
+                    this.actors.push(actor);
+                  }
+                });
+              });
+            }
           });
           if (character.gender){
             this.selectedGenre = character.gender;
@@ -72,17 +99,44 @@ export class CharacterEditComponent {
         birthYear: this.formGroup.value.birthYear ? this.formGroup.value.birthYear : undefined,
         nationality: this.formGroup.value.nationality ? this.formGroup.value.nationality : undefined,
         gender: this.selectedGenre ? this.selectedGenre : undefined,
-        species: this.formGroup.value.species ? this.formGroup.value.species : undefined
+        species: this.formGroup.value.species ? this.formGroup.value.species : undefined,
+        actors: this.characterActors
       };
       this.characterService.saveItem(character)
         .subscribe(createdCharacter => console.log(createdCharacter));
-      this.reset();
+      if (this.router.url === '/characters/edit'){
+        this.reset();
+      } else if (this.isAdmin){
+        this.router.navigate(['/characters/admin']);
+      } else {
+        this.router.navigate(['/characters']);
+      }
     }
+  }
+
+  pushActor(actor: ICharacter): void {
+    this.characterActors.push(actor);
+    const index = this.actors.indexOf(actor);
+    if (index > -1) {
+      this.actors.splice(index, 1);
+    }
+  }
+
+  popActor(actor: ICharacter): void {
+    const index = this.characterActors.indexOf(actor);
+    if (index > -1) {
+      this.characterActors.splice(index, 1);
+    }
+    this.actors.push(actor);
   }
 
   reset(): void {
     this.formGroup.reset({
     });
+    this.characterActors.forEach(actor => {
+      this.actors.push(actor);
+    });
+    this.characterActors = [];
   }
 
   atLeastOne(firstControl: string, secondControl: string, thirdControl: string): ValidatorFn {

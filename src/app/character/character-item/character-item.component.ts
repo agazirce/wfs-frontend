@@ -14,6 +14,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class CharacterItemComponent {
   @Input() item: ICharacter | undefined;
   isDetail = false;
+  emptyArray: boolean;
 
   constructor(
     private service: CharacterService,
@@ -28,6 +29,9 @@ export class CharacterItemComponent {
       this.isDetail = true;
       this.service.getItem(id).subscribe(character => {
         this.item = character;
+        if (character.actors.length === 0){
+          this.emptyArray = true;
+        }
       });
     }
   }
