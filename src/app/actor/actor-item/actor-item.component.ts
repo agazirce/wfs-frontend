@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { IActor } from 'src/app/common/resource/actor/actor.model';
 import { ActorService } from '../actor.service';
@@ -12,7 +12,7 @@ export class ActorItemComponent {
   @Input() actor: IActor;
 
   constructor(private actorService: ActorService,
-    private router: Router) { }
+              private router: Router) { }
 
   remove(): void {
     if (this.actor._id){
