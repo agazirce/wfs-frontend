@@ -1,0 +1,41 @@
+<mat-grid-list cols="5" rowHeight="100px" class="test">
+  <mat-grid-tile [colspan]="2" [rowspan]="5">
+    <img *ngIf='actor?.pictures != undefined' src="{{ actor.pictures }}" class="picture" />
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    <h1>{{ actor.firstName + " " + actor.lastName }}</h1>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="1">
+    Genre : {{ actor?.gender }}
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
+    Nationalité : {{ actor.nationality }}
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="3" [rowspan]="2">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia
+      volutpat magna ac luctus. Mauris eu lorem non lorem posuere pulvinar in
+      vitae nulla. Nulla finibus fringilla urna, ac imperdiet felis elementum
+      non. Vestibulum eget enim dignissim metus efficitur dictum. Maecenas
+      molestie dui nunc, vitae facilisis tortor faucibus et. Proin nec mauris
+      sit amet nunc commodo condimentum dapibus sit amet dolor. Vivamus bibendum
+      lacinia mauris, a convallis turpis accumsan quis. Donec sagittis placerat
+      metus, at consequat ante rutrum vel. Aliquam maximus fringilla tortor,
+      eget commodo dui gravida vitae. Donec in ornare enim, pulvinar sagittis
+      leo. Ut a pellentesque nulla, ut feugiat eros. Donec ullamcorper ipsum nec
+      nibh convallis, sit amet tincidunt orci varius. Morbi sit amet finibus
+      nunc. Donec eu odio maximus, malesuada neque in, dapibus massa. Sed in
+      pharetra arcu, sit amet sollicitudin elit. Vestibulum tristique ut tortor
+      commodo placerat. Pellentesque tempus tempor erat sit amet varius. Donec
+      porta blandit urna in venenatis. Nullam et varius justo, sed porta mauris.
+      Nam commodo, arcu sit amet tristique fermentum, massa dui fringilla
+      libero, in egestas ante lacus et libero. Nunc finibus laoreet odio eu
+      sagittis. Aliquam porta, urna viverra rutrum accumsan, libero ipsum
+      tincidunt est, vel tincidunt enim risus quis erat.
+    </p>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="2">
+    {{ actor.firstName }}
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="1" [rowspan]="3"> </mat-grid-tile>
+</mat-grid-list>

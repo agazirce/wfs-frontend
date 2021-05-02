@@ -24,6 +24,10 @@ export class LayoutComponent {
       link: 'characters'
     },
     {
+      label: 'Acteurs',
+      link: 'actors'
+    },
+    {
       label: 'Films',
       link: 'movies'
     },

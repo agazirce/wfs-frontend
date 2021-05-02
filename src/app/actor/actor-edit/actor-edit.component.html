@@ -1,0 +1,55 @@
+<form [formGroup]="formGroup" (ngSubmit)="save()">
+  <!-- FirstName -->
+  <mat-form-field>
+    <mat-label>Prénom</mat-label>
+    <input matInput formControlName="firstName" name="firstName" />
+  </mat-form-field>
+
+  <!-- LastName -->
+  <mat-form-field>
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="lastName" name="lastName" />
+  </mat-form-field>
+
+  <!-- NickName -->
+  <mat-form-field>
+    <mat-label>Nom d'acteur</mat-label>
+    <input matInput formControlName="nickname" name="nickname" />
+  </mat-form-field>
+
+  <!-- Profile Picture -->
+  <mat-form-field>
+    <mat-label>Photo de l'acteur</mat-label>
+    <input matInput formControlName="pictures" name="pictures" />
+  </mat-form-field>
+
+  <!-- Genre -->
+  <mat-form-field>
+    <mat-label>Genre</mat-label>
+    <input matInput formControlName="gender" name="gender" />
+  </mat-form-field>
+
+  <!-- Nationalité -->
+  <mat-form-field>
+    <mat-label>Nationalité</mat-label>
+    <input matInput formControlName="nationality" name="nationality" />
+  </mat-form-field>
+
+  <!-- Date de naissance -->
+  <mat-form-field>
+    <mat-label>Date de naissance</mat-label>
+    <input
+      matInput
+      type="date"
+      formControlName="birthDate"
+      name="birthDate"
+    />
+  </mat-form-field>
+
+  <button mat-flat-button color="primary">Save</button>
+  <button type="button" mat-flat-button color="accent" (click)="reset()">
+    Reset
+  </button>
+</form>
+
+<a mat-button routerLink="/actors">Retour à la liste</a>

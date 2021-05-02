@@ -14,6 +14,11 @@ const routes: Routes = [
       .then(module => module.MovieModule)
   },
   {
+    path: 'actors',
+    loadChildren: () => import('./actor/actor.module')
+      .then(module => module.ActorModule)
+  },
+  {
     path: 'login',
     component: AuthComponent
   }
