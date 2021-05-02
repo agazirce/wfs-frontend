@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {ICharacter} from '../character.model';
+import {IActor} from '../../common/resource/actor/actor.model';
+import {ActorService} from '../../actor/actor.service';
 
 @Component({
   selector: 'app-character-edit',
@@ -21,11 +23,12 @@ export class CharacterEditComponent {
   id: string;
   isAdmin: boolean;
   selectedGenre: string;
-  characterActors: ICharacter[] = [];
-  actors: ICharacter[] = [];
+  characterActors: IActor[] = [];
+  actors: IActor[] = [];
 
   constructor(
     private characterService: CharacterService,
+    private actorService: ActorService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router
@@ -42,7 +45,7 @@ export class CharacterEditComponent {
     }, { validators: this.atLeastOne('firstName', 'lastName', 'nickname') });
     this.reset();
     if (this.router.url === '/characters/edit') {
-      this.characterService.getAllItems().subscribe(actors => {
+      this.actorService.getAllItems().subscribe(actors => {
         this.actors = actors;
       });
     }
@@ -63,7 +66,7 @@ export class CharacterEditComponent {
             gender: character.gender,
             species: character.species
           });
-          this.characterService.getAllItems().subscribe(actors => {
+          this.actorService.getAllItems().subscribe(actors => {
             if (character.actors.length === 0){
               this.actors = actors;
             } else {
@@ -114,7 +117,7 @@ export class CharacterEditComponent {
     }
   }
 
-  pushActor(actor: ICharacter): void {
+  pushActor(actor: IActor): void {
     this.characterActors.push(actor);
     const index = this.actors.indexOf(actor);
     if (index > -1) {
@@ -122,7 +125,7 @@ export class CharacterEditComponent {
     }
   }
 
-  popActor(actor: ICharacter): void {
+  popActor(actor: IActor): void {
     const index = this.characterActors.indexOf(actor);
     if (index > -1) {
       this.characterActors.splice(index, 1);

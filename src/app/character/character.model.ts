@@ -1,3 +1,5 @@
+import {IActor} from '../common/resource/actor/actor.model';
+
 export interface ICharacter {
   _id: string | null;
   firstName: string | null;
@@ -7,6 +9,5 @@ export interface ICharacter {
   nationality: string | null;
   gender: string | null | undefined;
   species: string | null;
-  actors: ICharacter[];
+  actors: IActor[];
 }
-// TODO passer actors en IActor[] une fois implémenté
