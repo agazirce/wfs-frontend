@@ -24,7 +24,7 @@
     <mat-list>
       <h3> Liste des personnages du Film </h3>
       <mat-list-item *ngFor="let character of item?.characters">
-        {{character.firstName}} {{character.lastName}}
+        {{ character.firstName}} {{ character.lastName}} {{ character.nickname}}
       </mat-list-item>
     </mat-list>
   </mat-card-content>
