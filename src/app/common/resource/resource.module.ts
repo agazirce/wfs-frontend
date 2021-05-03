@@ -9,6 +9,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MeModule} from '../me/me.module';
 import {AuthResource} from './auth/auth.resource';
 import { ActorResource } from './actor/actor.resource';
+import { UserResource } from './user/user.resource';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import { ActorResource } from './actor/actor.resource';
     MovieResource,
     ActorResource,
     AuthResource,
+    UserResource,
     { provide: HTTP_INTERCEPTORS, useClass: AuthentificationInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true }
   ]

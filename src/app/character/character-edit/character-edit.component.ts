@@ -20,7 +20,6 @@ export class CharacterEditComponent {
 
   formGroup: FormGroup;
   character$: Observable<ICharacter>;
-  id: string;
   isAdmin: boolean;
   selectedGenre: string;
   characterActors: IActor[] = [];
