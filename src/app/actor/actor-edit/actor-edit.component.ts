@@ -34,9 +34,10 @@ export class ActorEditComponent {
       firstName: [undefined],
       lastName: [undefined],
       gender: [undefined],
-      birthdate: [undefined],
+      birthDate: [undefined],
       nationality: [undefined],
       nickname: [undefined],
+      pictures: [undefined],
     });
     this.reset();
   }
@@ -49,8 +50,8 @@ export class ActorEditComponent {
         title: this.actor.firstName,
         genre: this.actor.gender,
         pictures: this.actor.pictures,
-        birthdate: this.actor.birthDate,
-        nickname: this.actor.nickname,
+        birthDate: this.actor.birthDate,
+        nickname: this.actor.nickname
       });
     } else {
       this.formGroup.reset();
@@ -67,13 +68,14 @@ export class ActorEditComponent {
         this.actor.nationality = this.formGroup.value.nationality;
         this.actor.nickname = this.formGroup.value.nickname;
         this.actor.pictures = this.formGroup.value.pictures;
+        console.log(this.actor);
         this.actorService
           .updateItem(this.id, this.actor)
           .subscribe((updatedactor) => console.log(updatedactor));
         this.reset();
       } else {
         const actor: IActor = {
-          _id: '',
+          _id: null,
           firstName: this.formGroup.value.firstName,
           lastName: this.formGroup.value.lastName,
           gender: this.formGroup.value.gender,
