@@ -5,7 +5,7 @@ import { MovieComponent } from './movie.component';
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { MovieItemComponent } from './movie-item/movie-item.component';
 import { MovieEditComponent } from './movie-edit/movie-edit.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
@@ -15,7 +15,8 @@ import { MovieAdminComponent } from './movie-admin/movie-admin.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
-import { CharacterItemComponent } from '../character/character-item/character-item.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogActorMovieComponent } from '../dialog-actor-movie/dialog-actor-movie.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CharacterItemComponent } from '../character/character-item/character-it
     MovieItemComponent,
     MovieEditComponent,
     MovieAdminComponent,
+    DialogActorMovieComponent
   ],
   imports: [
     CommonModule,
@@ -35,11 +37,14 @@ import { CharacterItemComponent } from '../character/character-item/character-it
     MatIconModule,
     MatListModule,
     MatTableModule,
+    MatDialogModule,
     RouterModule,
-    MovieRoutingModule
+    MovieRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MovieComponent
-  ]
+  ],
 })
 export class MovieModule { }

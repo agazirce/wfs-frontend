@@ -5,7 +5,8 @@ import { ICharacter } from 'src/app/character/character.model';
 import { CharacterService } from 'src/app/character/character.service';
 import { IMovie } from '../movie.model';
 import { MovieService } from '../movie.service';
-
+import {MatDialog} from '@angular/material/dialog';
+import { DialogActorMovieComponent } from 'src/app/dialog-actor-movie/dialog-actor-movie.component';
 @Component({
   selector: 'app-movie-edit',
   templateUrl: './movie-edit.component.html',
@@ -25,6 +26,7 @@ export class MovieEditComponent {
   charactersDel: ICharacter[] = [];
 
   constructor(
+    public dialog: MatDialog,
     private movieService: MovieService,
     private characterService: CharacterService,
     private formBuilder: FormBuilder,
@@ -92,10 +94,22 @@ export class MovieEditComponent {
   }
 
   pushCharacter(character: ICharacter): void {
-    if (this.id){
-      this.movie.characters.push(character);
-    }
-    this.charactersAdd.push(character);
+    const dialogRef = this.dialog.open(DialogActorMovieComponent,{
+      data: {
+        actors: character.actors
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      character.actors = [];
+      //On vide la liste d'acteurs du character puis on y ajoute l'acteurs sélectionner pour ce film
+      character.actors.push(result);
+      console.log(`Dialog result: `,character.actors);
+      if (this.id){
+        this.movie.characters.push(character);
+      }
+      this.charactersAdd.push(character);
+    });
   }
 
   popCharacter(character: ICharacter): void {

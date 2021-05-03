@@ -13,10 +13,12 @@ import { ResourceModule } from './common/resource/resource.module';
 import {AuthModule} from './auth/auth.module';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {LayoutModule} from './layout/layout.module';
+import { DialogActorMovieComponent } from './dialog-actor-movie/dialog-actor-movie.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import {LayoutModule} from './layout/layout.module';
     MatIconModule,
     MatListModule,
     ResourceModule,
+    FormsModule,
     MatTooltipModule
   ],
   providers: [],
