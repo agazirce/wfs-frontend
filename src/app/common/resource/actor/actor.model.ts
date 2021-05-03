@@ -1,5 +1,5 @@
 export interface IActor {
-    _id: string,
+    _id: string | null,
     firstName: string;
     lastName: string;
     birthDate: Date;
