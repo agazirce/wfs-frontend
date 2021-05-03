@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { IActor } from 'src/app/common/resource/actor/actor.model';
 import { ActorService } from '../actor.service';
@@ -12,7 +12,7 @@ import { ActorService } from '../actor.service';
 export class ActorEditComponent {
   formGroup: FormGroup;
   id: string;
-  update: Boolean;
+  update: boolean;
   actor: IActor;
 
   constructor(

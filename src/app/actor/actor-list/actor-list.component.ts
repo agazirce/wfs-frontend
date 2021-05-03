@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { IActor } from 'src/app/common/resource/actor/actor.model';
 
 @Component({

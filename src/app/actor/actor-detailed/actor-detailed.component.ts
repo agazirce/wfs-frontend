@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IActor } from 'src/app/common/resource/actor/actor.model';
 import { ActorService } from '../actor.service';
 
@@ -14,7 +14,7 @@ export class ActorDetailedComponent implements OnInit {
   actorId: string;
 
   constructor(
-    private actorService :ActorService,
+    private actorService: ActorService,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
