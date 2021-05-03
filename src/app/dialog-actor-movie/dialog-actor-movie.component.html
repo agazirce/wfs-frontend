@@ -1,0 +1,7 @@
+<h2 mat-dialog-title>Choisissez l'acteur du personnage dans ce film</h2>
+
+<select [(ngModel)]="acteur" name="actor" id="actor">
+  <option *ngFor="let actor of data.actors" value="{{actor}}">{{ actor.firstName}} {{ actor.lastName }}</option>
+</select>
+
+<button mat-button [mat-dialog-close]="acteur" cdkFocusInitial>Ok</button>
