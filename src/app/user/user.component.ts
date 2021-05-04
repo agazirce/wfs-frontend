@@ -25,7 +25,7 @@ export class UserComponent {
     if (id){
       this.service.removeItem(id).subscribe();
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate(['/user']);
+        this.router.navigate(['/users']);
       });
     }
   }

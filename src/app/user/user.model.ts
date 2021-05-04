@@ -3,7 +3,7 @@ export interface IUser {
   firstName: string | null;
   lastName: string | null;
   username: string | null;
-  birthDate: Date | null;
+  birthDate: number | null;
   email: string | null;
   password: string | null;
   gender: string | null | undefined;

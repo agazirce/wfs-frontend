@@ -5,7 +5,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {IUser} from '../user.model';
 import {filter, map, switchMap, tap} from 'rxjs/operators';
-import {ICharacter} from '../../character/character.model';
 
 @Component({
   selector: 'app-user-edit',
