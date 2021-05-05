@@ -34,3 +34,11 @@ Découpage du front en modules :
 
 Pour user, movie, character et actor, un service chacun qui permet une mutualisation des requêtes 
 pour une même ressource afin de permettre une plus grande modularité future.
+
+
+Qui a accès à quoi ?
+
+- l'utilisateur non connecté peut consulter la liste et le détail des movies, characters et actors,
+- l'utilisateur connecté en tant que membre peut en plus créer et mettre à jour dans ces 3 ressources,
+- l'utilisateur connecté en tant qu'admin peut en plus supprimer dans ces trois ressources, ainsi qu'en avoir un aperçu global plus complet.
+Il peut aussi gérer les utilisateurs (consulter, créer, modifier et supprimer).
