@@ -1,4 +1,4 @@
-Découpage du front en modules :
+# Découpage du front en modules :
 
 - 3 modules concernant les ressources consultables de façon publique : <br/>
       - movie,<br/>
@@ -37,7 +37,7 @@ pour une même ressource afin de permettre une plus grande modularité future.
 De plus, ces services permettent aussi d'utiliser un module donné dans un autre de façon légère.
 
 
-Qui a accès à quoi ?
+# Qui a accès à quoi ?
 
 - l'utilisateur non connecté peut consulter la liste et le détail des movies, characters et actors,
 - l'utilisateur connecté en tant que membre peut en plus créer et mettre à jour dans ces 3 ressources,
