@@ -1,27 +1,27 @@
-# Front
+Découpage du front en modules :
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.2.
+- 3 modules concernant les ressources consultables de façon publique :
+      - movie,
+      - character,
+      - actor.
+    Dans chacun de ces modules, on peut retrouver des components similaires :
+        - list,
+        - item,
+        - edit,
+        - admin.
 
-## Development server
+- 1 module permettant la connexion :
+      - auth.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+- 1 module dédié à la gestion des utilisateurs :
+      - user.
 
-## Code scaffolding
+- Dans common, 2 modules :
+      - me, pour contrôler l'authentification et le rôle de l'utilisateur le cas échéant,
+      - resource, qui permet de faire le lien avec le serveur
+        Ce dernier contient aussi 2 interceptors :
+          - authentification afin de contrôler l'authentification sur chaque requête, 
+          - error.handler afin de renvoyer un message compréhensible à l'utilisateur en cas d'erreur.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- 1 module gérant l'affichage général :
+      - layout.
