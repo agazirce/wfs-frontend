@@ -5,10 +5,10 @@
       - character,<br/>
       - actor.<br/>
     Dans chacun de ces modules, on peut retrouver des components similaires :<br/>
-        - list,<br/>
-        - item,<br/>
-        - edit,<br/>
-        - admin.<br/>
+        - list pour gérer l'affichage de la liste des éléments,<br/>
+        - item pour gérer l'affichage d'un élément,<br/>
+        - edit pour créer / modifier un élément,<br/>
+        - admin pour permettre à l'admin de gérer simplement l'ensemble des éléments.<br/>
   <br/>
 - 1 module permettant la connexion :<br/>
       - auth.<br/>
