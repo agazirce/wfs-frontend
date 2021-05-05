@@ -34,6 +34,7 @@ Découpage du front en modules :
 
 Pour user, movie, character et actor, un service chacun qui permet une mutualisation des requêtes 
 pour une même ressource afin de permettre une plus grande modularité future.
+De plus, ces services permettent aussi d'utiliser un module donné dans un autre de façon légère.
 
 
 Qui a accès à quoi ?
