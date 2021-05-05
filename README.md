@@ -25,3 +25,12 @@ Découpage du front en modules :
 
 - 1 module gérant l'affichage général :
       - layout.
+  
+- 4 modules gérant le routing interne avec gestion des différentes autorisations
+      - movie-routing,
+      - character-routing,
+      - actor-routing,
+      - user-routing.
+
+Pour user, movie, character et actor, un service chacun qui permet une mutualisation des requêtes 
+pour une même ressource afin de permettre une plus grande modularité future.
