@@ -35,12 +35,13 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   private getMessage(errorType: ErrorType): string {
     switch (errorType) {
       case ErrorType.invalidPermission:
-        return `vous n'avez pas les droits pour effectuer cette action`;
+        return `Vous n'avez pas les droits pour effectuer cette action.`;
       case ErrorType.invalidToken:
       case ErrorType.invalidCredentials:
       case ErrorType.missingToken:
         return 'Vous devez vous authentifier pour accéder à cette donnée.';
       case ErrorType.resourceTypeNotFound:
+        return `Cette donnée n'existe pas.`;
       case ErrorType.unhandledError:
         return 'Cette requête a généré une erreur.';
     }

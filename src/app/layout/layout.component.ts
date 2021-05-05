@@ -40,6 +40,10 @@ export class LayoutComponent {
       link: 'movies/admin'
     },
     {
+      label: 'Gestion des utilisateurs',
+      link: 'users'
+    },
+    {
       label: 'Connexion',
       link: 'login'
     }
