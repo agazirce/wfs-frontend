@@ -4,12 +4,11 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
         {
-            "type": "pwa-chrome",
+            "command": "npm start",
+            "name": "Run npm start",
             "request": "launch",
-            "name": "Open actor-edit.component.html",
-            "file": "/Users/rgimenez/workspace/node/wfs-frontend/src/app/actor/actor-edit/actor-edit.component.html"
+            "type": "node-terminal"
         }
     ]
 }

@@ -1,5 +1,8 @@
-<mat-grid-list cols="5" rowHeight="100px" class="test">
-  <mat-grid-tile [colspan]="2" [rowspan]="5">
+<mat-grid-tile-header>
+  <button mat-button [routerLink]="'/actors'">Retour</button>
+</mat-grid-tile-header>
+<mat-grid-list cols="5" rowHeight="50px" class="test">
+  <mat-grid-tile [colspan]="2" [rowspan]="8">
     <img *ngIf='actor?.pictures != undefined' src="{{ actor.pictures }}" class="picture" />
   </mat-grid-tile>
   <mat-grid-tile [colspan]="3" [rowspan]="1">
@@ -8,10 +11,10 @@
   <mat-grid-tile [colspan]="3" [rowspan]="1">
     Genre : {{ actor?.gender }}
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="1" [rowspan]="2">
+  <mat-grid-tile [colspan]="1" [rowspan]="2" style="background-color: blueviolet;">
     Nationalité : {{ actor.nationality }}
   </mat-grid-tile>
-  <mat-grid-tile [colspan]="3" [rowspan]="2">
+  <mat-grid-tile [colspan]="3" >
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lacinia
       volutpat magna ac luctus. Mauris eu lorem non lorem posuere pulvinar in

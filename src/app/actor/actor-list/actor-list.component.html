@@ -1,8 +1,6 @@
-<div class="test">
-    <button mat-raised-button color="primary" [routerLink]="'edit'">
-        Ajouter un acteur
-    </button>
-    <div>
-        <app-actor-item *ngFor="let actor of actors" [actor]="actor"></app-actor-item>
-    </div>
-</div>
+<ng-container>
+    <app-actor-item
+      *ngFor="let actor of actors"
+      [actor]="actor"
+    ></app-actor-item>
+</ng-container>
