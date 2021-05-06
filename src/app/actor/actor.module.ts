@@ -14,6 +14,9 @@ import { ActorEditComponent } from './actor-edit/actor-edit.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatListModule } from '@angular/material/list';
+import { ActorAdminComponent } from './actor-admin/actor-admin.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -22,7 +25,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActorDetailedComponent,
     ActorItemComponent,
     ActorListComponent,
-    ActorEditComponent
+    ActorEditComponent,
+    ActorAdminComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +34,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ActorRoutingModule,
     RouterModule,
     MatButtonModule,
+    MatListModule,
     MatGridListModule,
+    MatTableModule,
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,

@@ -1,3 +1,17 @@
+:host {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem
+  }
+
+mat-grid-tile-header {
+  margin: 10px;
+}
+
 .test {
-    margin: 10px;
+  margin-left: 10px;
+}
+
+mat-grid-list > mat-grid-tile {
+  min-width: 200px;
 }

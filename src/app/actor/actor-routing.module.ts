@@ -4,6 +4,7 @@ import {ActorComponent} from './actor.component';
 import {AdminGuard, MeGuard} from '../common/me/me.guard';
 import { ActorDetailedComponent } from './actor-detailed/actor-detailed.component';
 import { ActorEditComponent } from './actor-edit/actor-edit.component';
+import { ActorAdminComponent } from './actor-admin/actor-admin.component';
 
 const routes: Routes = [
   {
@@ -11,14 +12,19 @@ const routes: Routes = [
     component: ActorComponent
   },
   {
-    canActivate: [MeGuard],
-    path: 'edit',
+    canActivate: [AdminGuard],
+    path: 'create',
     component: ActorEditComponent
   },
   {
-    canActivate: [MeGuard],
+    canActivate: [AdminGuard],
     path: 'edit/:id',
     component: ActorEditComponent
+  },
+  {
+    canActivate: [AdminGuard],
+    path: 'admin',
+    component: ActorAdminComponent
   },
   {
     path: ':id',

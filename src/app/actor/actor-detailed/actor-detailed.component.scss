@@ -1,5 +1,5 @@
 mat-grid-tile {
-    justify-content: left;
+    justify-content: start;
 }
 
 .test {
@@ -10,6 +10,5 @@ mat-grid-tile {
 }
 
 .picture {
-    max-width: 100px ;
-    width: max-content;
+    height: fit-content;
 }
